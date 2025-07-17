@@ -43,7 +43,9 @@ public class QuartoController {
     }
 
     @GetMapping("/disponiveisPorData")
-    public List<QuartoDTO> listarQuartosDisponiveisPorData( @RequestParam String dataInicial, @RequestParam String dataFinal, @RequestParam String tipoQuarto) {
+    public List<QuartoDTO> listarQuartosDisponiveisPorData( @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataInicial,
+                                                            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dataFinal,
+                                                            @RequestParam String tipoQuarto) {
         return quartoService.listarQuartosDisponiveisPorDataETipo(dataInicial, dataFinal, tipoQuarto);
     }
 

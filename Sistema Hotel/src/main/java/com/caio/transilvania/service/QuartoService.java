@@ -58,11 +58,11 @@ public class QuartoService {
         return quartoMapper.toDTO(quarto);
     }
 
-    public List<QuartoDTO> listarQuartosDisponiveisPorDataETipo(String dataInicial, String dataFinal, String tipoQuarto) {
+    public List<QuartoDTO> listarQuartosDisponiveisPorDataETipo(Date dataInicial, Date dataFinal, String tipoQuarto) {
         List<Quarto> quartos = quartoRepository.findAllByStatusQuartoAndTipoQuarto(StatusQuarto.DISPONIVEL, TipoQuarto.valueOf(tipoQuarto));
         List<Quarto> quartosDisponiveis = new ArrayList<>();
         for (Quarto quarto : quartos) {
-           if(!reservaService.buscarReservaPorData(new Date(dataInicial), new Date(dataFinal), StatusReserva.ATIVA, quarto.getId())) {
+           if(!reservaService.buscarReservaPorData(dataInicial, dataFinal, StatusReserva.ATIVA, quarto.getId())) {
                quartosDisponiveis.add(quarto);
             }
         }
