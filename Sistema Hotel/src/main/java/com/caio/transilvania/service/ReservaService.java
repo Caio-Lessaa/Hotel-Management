@@ -43,8 +43,6 @@ public class ReservaService {
         Hospede hospede = hospedeService.buscarHospede(reservaDTO.getHospede());
         Quarto quarto = quartoService.buscarQuarto(reservaDTO.getQuarto());
 
-        hospedeService.buscarHospede(reservaDTO.getHospede());
-        quartoService.buscarQuarto(reservaDTO.getQuarto());
         boolean reservaExistente = reservaRepository.
                 existsByDataEntradaLessThanEqualAndDataSaidaGreaterThanEqualAndStatusAndQuartoId
                         (reservaDTO.getDataSaida(), reservaDTO.getDataEntrada(), StatusReserva.ATIVA, reservaDTO.getQuarto());
@@ -74,6 +72,10 @@ public class ReservaService {
 
     public Reserva buscarReserva(Long id){
         return reservaRepository.findById(id).orElseThrow(() -> new ReservaNaoEncontradaException());
+    }
+
+    public List<ReservaDTO> listarReservas(){
+        return reservaMapper.toListDTO(reservaRepository.findAll());
     }
 
     public ReservaDTO fazerCheckin(Long id){

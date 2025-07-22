@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface QuartoRepository extends JpaRepository<Quarto, Long> {
-    List<Quarto> findAllByStatusQuarto(StatusQuarto statusQuarto);
+    List<Quarto> findAllByStatus(StatusQuarto statusQuarto);
 
-    List<Quarto> findAllByStatusQuartoAndTipoQuarto(StatusQuarto statusQuarto, TipoQuarto tipoQuarto);
+    List<Quarto> findAllByStatusAndTipo(StatusQuarto statusQuarto, TipoQuarto tipoQuarto);
 }

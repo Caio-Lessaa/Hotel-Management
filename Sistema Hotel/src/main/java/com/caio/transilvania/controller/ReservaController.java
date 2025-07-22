@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reservas")
+@CrossOrigin(origins = "http://localhost:8081/")
 public class ReservaController {
     private final ReservaService reservaService;
 
@@ -30,6 +31,11 @@ public class ReservaController {
     @GetMapping("/hospede")
     public List<ReservaDTO> buscarReservaHospede(@RequestParam String documento){
         return reservaService.buscarReservaHospede(documento);
+    }
+
+    @GetMapping
+    public List<ReservaDTO> listarReservas() {
+        return reservaService.listarReservas();
     }
 
     @PutMapping("/checkin/{id}")

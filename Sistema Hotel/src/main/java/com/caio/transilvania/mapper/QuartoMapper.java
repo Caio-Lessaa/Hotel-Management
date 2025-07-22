@@ -15,9 +15,9 @@ public class QuartoMapper {
         Quarto quarto = new Quarto();
         quarto.setNumero(quartoDTO.getNumero());
         try {
-            quarto.setTipoQuarto(TipoQuarto.valueOf(quartoDTO.getTipoQuarto()));
+            quarto.setTipo(TipoQuarto.valueOf(quartoDTO.getTipo()));
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Tipo de quarto inválido: " + quartoDTO.getTipoQuarto());
+            throw new RuntimeException("Tipo de quarto inválido: " + quartoDTO.getTipo());
         }
         quarto.setPrecoDiaria(quartoDTO.getPrecoDiaria());
         return quarto;
@@ -27,7 +27,7 @@ public class QuartoMapper {
         QuartoDTO quartoDTO = new QuartoDTO();
         quartoDTO.setId(quarto.getId());
         quartoDTO.setNumero(quarto.getNumero());
-        quartoDTO.setTipo(quarto.getTipoQuarto().toString());
+        quartoDTO.setTipo(quarto.getTipo().toString());
         quartoDTO.setStatus(quarto.getStatusQuarto().toString());
         quartoDTO.setPrecoDiaria(quarto.getPrecoDiaria());
         return quartoDTO;
@@ -39,7 +39,7 @@ public class QuartoMapper {
             QuartoDTO quartoDTO = new QuartoDTO();
             quartoDTO.setId(quarto.getId());
             quartoDTO.setNumero(quarto.getNumero());
-            quartoDTO.setTipo(quarto.getTipoQuarto().toString());
+            quartoDTO.setTipo(quarto.getTipo().toString());
             quartoDTO.setStatus(quarto.getStatusQuarto().toString());
             quartoDTO.setPrecoDiaria(quarto.getPrecoDiaria());
             quartosDTO.add(quartoDTO);
@@ -52,11 +52,11 @@ public class QuartoMapper {
             quarto.setNumero(quartoDto.getNumero());
         }
 
-    if (quartoDto.getTipoQuarto() != null && !quartoDto.getTipoQuarto().trim().isEmpty()) {
+    if (quartoDto.getTipo() != null && !quartoDto.getTipo().trim().isEmpty()) {
             try {
-                quarto.setTipoQuarto(TipoQuarto.valueOf(quartoDto.getTipoQuarto()));
+                quarto.setTipo(TipoQuarto.valueOf(quartoDto.getTipo()));
             } catch (IllegalArgumentException e) {
-                throw new RuntimeException("Tipo de quarto inválido: " + quartoDto.getTipoQuarto());
+                throw new RuntimeException("Tipo de quarto inválido: " + quartoDto.getTipo());
             }
         }
 

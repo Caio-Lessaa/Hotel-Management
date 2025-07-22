@@ -9,9 +9,9 @@ public class Quarto {
     private Long id;
     private String numero;
     @Enumerated(EnumType.STRING)
-    private TipoQuarto tipoQuarto;
+    private TipoQuarto tipo;
     @Enumerated(EnumType.STRING)
-    private StatusQuarto statusQuarto;
+    private StatusQuarto status;
     private double precoDiaria;
 
     public Long getId() {
@@ -30,20 +30,20 @@ public class Quarto {
         this.numero = numero;
     }
 
-    public TipoQuarto getTipoQuarto() {
-        return tipoQuarto;
+    public TipoQuarto getTipo() {
+        return tipo;
     }
 
-    public void setTipoQuarto(TipoQuarto tipoQuarto) {
-        this.tipoQuarto = tipoQuarto;
+    public void setTipo(TipoQuarto tipo) {
+        this.tipo = tipo;
     }
 
     public StatusQuarto getStatusQuarto() {
-        return statusQuarto;
+        return status;
     }
 
-    public void setStatusQuarto(StatusQuarto statusQuarto) {
-        this.statusQuarto = statusQuarto;
+    public void setStatusQuarto(StatusQuarto status) {
+        this.status = status;
     }
 
     public double getPrecoDiaria() {

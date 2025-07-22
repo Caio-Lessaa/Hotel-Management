@@ -9,11 +9,13 @@ import com.caio.transilvania.model.StatusQuarto;
 import com.caio.transilvania.model.StatusReserva;
 import com.caio.transilvania.model.TipoQuarto;
 import com.caio.transilvania.repository.QuartoRepository;
+import com.caio.transilvania.utils.FormatarData;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,7 +47,7 @@ public class QuartoService {
     }
 
     public List<QuartoDTO> listarQuartosDisponiveis(){
-        List<Quarto> quartos = quartoRepository.findAllByStatusQuarto(StatusQuarto.DISPONIVEL);
+        List<Quarto> quartos = quartoRepository.findAllByStatus(StatusQuarto.DISPONIVEL);
         return quartoMapper.toListDTO(quartos);
     }
 
@@ -58,11 +60,15 @@ public class QuartoService {
         return quartoMapper.toDTO(quarto);
     }
 
-    public List<QuartoDTO> listarQuartosDisponiveisPorDataETipo(Date dataInicial, Date dataFinal, String tipoQuarto) {
-        List<Quarto> quartos = quartoRepository.findAllByStatusQuartoAndTipoQuarto(StatusQuarto.DISPONIVEL, TipoQuarto.valueOf(tipoQuarto));
+    public List<QuartoDTO> listarQuartosDisponiveisPorDataETipo(String dataEntrada, String dataFinal, String tipoQuarto) {
+        FormatarData formatarData = new FormatarData();
+        Date entrada = formatarData.formatar(dataEntrada);
+        Date saida = formatarData.formatar(dataFinal);
+
+        List<Quarto> quartos = quartoRepository.findAllByStatusAndTipo(StatusQuarto.DISPONIVEL, TipoQuarto.valueOf(tipoQuarto));
         List<Quarto> quartosDisponiveis = new ArrayList<>();
         for (Quarto quarto : quartos) {
-           if(!reservaService.buscarReservaPorData(dataInicial, dataFinal, StatusReserva.ATIVA, quarto.getId())) {
+           if(!reservaService.buscarReservaPorData(entrada, saida, StatusReserva.ATIVA, quarto.getId())) {
                quartosDisponiveis.add(quarto);
             }
         }

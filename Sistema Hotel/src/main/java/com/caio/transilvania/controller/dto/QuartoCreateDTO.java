@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 public class QuartoCreateDTO {
     @NotBlank(message = "O número do quarto não pode ser vazio!")
     private String numero;
-    private String tipoQuarto;
+    private String tipo;
     private double precoDiaria;
 
     public String getNumero() {
@@ -17,12 +17,12 @@ public class QuartoCreateDTO {
         this.numero = numero;
     }
 
-    public String getTipoQuarto() {
-        return tipoQuarto;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoQuarto(String tipoQuarto) {
-        this.tipoQuarto = tipoQuarto;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public double getPrecoDiaria() {
