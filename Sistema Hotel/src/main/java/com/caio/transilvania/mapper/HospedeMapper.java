@@ -17,6 +17,7 @@ public class HospedeMapper {
         hospede.setDocumento(hospedeCreateDTO.getDocumento());
         hospede.setTelefone(hospedeCreateDTO.getTelefone());
         hospede.setEmail(hospedeCreateDTO.getEmail());
+        hospede.setUsuario(hospedeCreateDTO.getUsuario());
         return hospede;
     }
 

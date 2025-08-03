@@ -16,6 +16,10 @@ public class Usuario implements UserDetails {
     @Column(unique = true)
     private String usuario;
     private String senha;
+    private RoleEnum role;
+
+    public Usuario() {
+    }
 
     public Usuario(Long id, String usuario, String senha) {
         this.id = id;
@@ -45,6 +49,14 @@ public class Usuario implements UserDetails {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
     }
 
     @Override
